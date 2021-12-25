@@ -9,6 +9,7 @@ from MStep import MStep, MStepTae
 from regularize_cov import regularize_cov
 from plotModes import plotModes
 from skinDetection import skinDetection
+import imageio
 
 epsilon, K, n_iter, skin_n_iter, skin_epsilon, skin_K, theta = parameters()
 
@@ -19,7 +20,7 @@ def im2double(im):
     out = (im.astype('float') - min_val) / (max_val - min_val)
     return out
 
-
+"""
 print('Question: Expectation Maximization Algorithm for GMMs')
 
 # load datasets
@@ -196,16 +197,16 @@ plt.subplot()
 plt.plot(range(num),logLikelihood)
 plt.title('Loglikelihood for different number of k on Data 3')
 plt.show()
-
+"""
 # skin detection
 print('\n')
 print('(g) performing skin detection with GMMs')
 sdata = np.loadtxt('skin.dat')
 ndata = np.loadtxt('non-skin.dat')
 
-img = im2double(misc.imread('faces.png'))
+img = im2double(imageio.imread('faces.png'))
 
 skin = skinDetection(ndata, sdata, skin_K, skin_n_iter, skin_epsilon, theta, img)
 plt.imshow(skin)
 plt.show()
-misc.imsave('skin_detection.png', skin)
+imageio.imsave('skin_detection.png', skin)
