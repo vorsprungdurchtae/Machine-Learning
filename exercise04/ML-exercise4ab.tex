@@ -1,0 +1,92 @@
+\section*{Exercise Sheet 04 a),b)}
+
+\vspace{0,75cm}
+
+\subsection*{Exercise 4-a}
+Let $\mathbf{x} \in \mathbb{R}^{1 \times N}$ and $\sigma(\mathfrak{x}) = $ softmax($\mathbf{x}$) = 
+$[\sigma_{i}(\mathbf{x})]_{i = 1...N}$ where $\sigma_{i}(\mathbf{x}) = \frac{e^{x_{i}}}{\Sigma_{j=1}^{N} e^{x_{j}}}$\\
+Prove the lecture's statement that softmax(x) = softmax(x+c) for c$\in \mathbb{R}$. This fact can be used in the softmax implementation by subtracting max$_{i=1...N}$ x$_{i}$ from the input, such that all values passed to the exp function are negative.\\
+\linebreak
+softmax($\mathbf{x}$) = $\sigma(\mathbf{x}) = \frac{e^{x}}{\Sigma_{j=1}^{N} e^{x_{j}}}$\\
+softmax($\mathbf{x + c}$) = $\sigma(\mathbf{x + c}) = \frac{e^{x + c}}{\Sigma_{j=1}^{N} e^{x_{j} + c}}$\\
+\[
+= \frac{e^{x + c}}{\Sigma_{j=1}^{N} e^{x_{j} + c}} \linebreak
+= \frac{e^{x} * e^{c}}{\Sigma_{j=1}^{N} e^{x_{j} e^{c}}} \linebreak
+= \frac{e^{x} * e^{c}}{ e^{c} \Sigma_{j=1}^{N} e^{x_{j}}} \linebreak
+= \frac{e^{x}}{\Sigma_{j=1}^{N} e^{x_{j}}}
+\]
+= softmax($\mathbf{x}$)
+
+\subsection*{Exercise 4-b}
+$\mathbf{x} \in \mathbb{R}^{1 \times N}$ = $[x_{1}, x_{2},...,x_{N}]$.\\
+$\sigma(\mathbf{x}) \in \mathbb{R}^{1 \times N}$ = 
+\[
+[\frac{e^{x_{1}}}{\Sigma_{j=1}^{N} e^{x_{j}}}, \frac{e^{x_{2}}}{\Sigma_{j=1}^{N} e^{x_{j}}},..., \frac{e^{x_{N}}}{\Sigma_{j=1}^{N} e^{x_{j}}} ]
+\]
+log($\sigma(\mathbf{x}) \in \mathbb{R}^{1 \times N}$) = 
+\[
+[log (\frac{e^{x_{1}}}{\Sigma_{j=1}^{N} e^{x_{j}}}),  log(\frac{e^{x_{2}}}{\Sigma_{j=1}^{N} e^{x_{j}}}),..., log (\frac{e^{x_{N}}}{\Sigma_{j=1}^{N} e^{x_{j}}})]
+\]
+\[
+= [log({e^{x_{1}}})-log({\Sigma_{j=1}^{N} e^{x_{j}}})),  log({e^{x_{2}}})-log({\Sigma_{j=1}^{N} e^{x_{j}}})),..., log({e^{x_{N}}})-log({\Sigma_{j=1}^{N}e^{x_{j}}}))]
+\]
+\clearpage
+$D_{\mathbf{x}}log(\sigma(\mathbf{x})) \in \mathbb{R}^{N \times N} = $
+\\
+\[
+[\frac{\partial(log({e^{x_{1}}})-log({\Sigma_{j=1}^{N} e^{x_{j}}}))}{\partial x_{1}},  \frac{\partial(log({e^{x_{2}}})-log({\Sigma_{j=1}^{N} e^{x_{j}}}))}{\partial x_{2}},...,
+\frac{\partial(log({e^{x_{N}}})-log({\Sigma_{j=1}^{N}e^{x_{j}}})}{\partial x_{N}}]
+\]
+=
+\[
+[\frac{\partial(log({e^{x_{1}})}}{\partial x_{1}}-\frac{\partial(log({\Sigma_{j=1}^{N} e^{x_{j}}}))}{\partial x_{1}},  \frac{\partial(log({e^{x_{2}})}}{\partial x_{2}}-\frac{\partial (log({\Sigma_{j=1}^{N} e^{x_{j}}}))}{\partial x_{2}}, ,...,
+\frac{\partial(log({e^{x_{N}})}}{\partial x_{N}}-\frac{\partial(log({\Sigma_{j=1}^{N} e^{x_{j}}}))}{\partial x_{N}},]
+\]
+=
+\[
+\begin{bmatrix}
+\frac{\partial(log({e^{x_{1}})}}{\partial x_{1}}-\frac{\partial log({\Sigma_{j=1}^{N} e^{x_{j}}})}{\partial x_{1}},& \frac{\partial(log({e^{x_{1}})}}{\partial x_{2}}-\frac{\partial log({\Sigma_{j=1}^{N} e^{x_{j}}})}{\partial x_{2}}&
+\cdots &
+\frac{\partial(log({e^{x_{1}})}}{\partial x_{N}}-\frac{\partial log({\Sigma_{j=1}^{N} e^{x_{j}}})}{\partial x_{N}}
+\\
+\frac{\partial(log({e^{x_{2}})}}{\partial x_{1}}-\frac{\partial log({\Sigma_{j=1}^{N} e^{x_{j}}})}{\partial x_{1}} &
+\frac{\partial(log({e^{x_{2}})}}{\partial x_{2}}-\frac{\partial log({\Sigma_{j=1}^{N} e^{x_{j}}})}{\partial x_{2}}&
+\cdots &
+\frac{\partial(log({e^{x_{2}})}}{\partial x_{N}}-\frac{\partial log({\Sigma_{j=1}^{N} e^{x_{j}}})}{\partial x_{N}}
+\\
+\vdots & \vdots & \ddots & \vdots
+\\
+\frac{\partial(log({e^{x_{N}})}}{\partial x_{1}}-\frac{\partial log({\Sigma_{j=1}^{N} e^{x_{j}}})}{\partial x_{1}},& \frac{\partial(log({e^{x_{N}})}}{\partial x_{2}}-\frac{\partial log({\Sigma_{j=1}^{N} e^{x_{j}}})}{\partial x_{2}}&
+\cdots &
+\frac{\partial(log({e^{x_{N}})}}{\partial x_{N}}-\frac{\partial log({\Sigma_{j=1}^{N} e^{x_{j}}})}{\partial x_{N}}
+\end{bmatrix}
+\]
+=
+\begin{equation}
+    \frac{\partial(log({e^{x_{i}})}}{\partial x_{k}}-\frac{\partial log({\Sigma_{j=1}^{N} e^{x_{j}}})}{\partial x_{k}}=
+    \begin{cases}
+      1 - \frac{e^{x_{k}}}{\Sigma_{j=1}^{N} e^{x_{j}}}), & \text{if}\ i=k \\
+      - \frac{e^{x_{k}}}{\Sigma_{j=1}^{N} e^{x_{j}}} & \text{otherwise}
+    \end{cases}
+\end{equation}
+Thus,
+\[
+\begin{bmatrix}
+1 - \frac{e^{x_{1}}}{\Sigma_{j=1}^{N} e^{x_{j}}})& - \frac{e^{x_{2}}}{\Sigma_{j=1}^{N} e^{x_{j}}}&
+\cdots &
+- \frac{e^{x_{N}}}{\Sigma_{j=1}^{N} e^{x_{j}}}
+\\
+ - \frac{e^{x_{1}}}{\Sigma_{j=1}^{N} e^{x_{j}}} &
+1 - \frac{e^{x_{2}}}{\Sigma_{j=1}^{N} e^{x_{j}}}&
+\cdots &
+- \frac{e^{x_{N}}}{\Sigma_{j=1}^{N} e^{x_{j}}}
+\\
+\vdots & \vdots & \ddots & \vdots
+\\
+ - \frac{e^{x_{1}}}{\Sigma_{j=1}^{N} e^{x_{j}}} & 
+ - \frac{e^{x_{2}}}{\Sigma_{j=1}^{N} e^{x_{j}}}
+&
+\cdots &
+1 - \frac{e^{x_{N}}}{\Sigma_{j=1}^{N} e^{x_{j}}}
+\end{bmatrix}
+\]

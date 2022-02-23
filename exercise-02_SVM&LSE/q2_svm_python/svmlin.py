@@ -92,6 +92,8 @@ def svmlin(X, t, C):
 
     else:
 
+        #it is the dual form to solve the optial value of slack variable s
+        #https://nianlonggu.com/2019/06/07/tutorial-on-SVM/
         slack = np.where(alpha > C - 1e-6, True, False)
         w = (alpha[sv] * t[sv]).dot(X[sv])
         b = np.mean(t[sv] - w.dot(X[sv].T))

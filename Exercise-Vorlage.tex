@@ -1,0 +1,76 @@
+\documentclass[12pt]{report}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage[title]{appendix}
+\usepackage{amsthm}
+\newtheorem{definition}{Definition}
+\theoremstyle{definition}
+\newtheorem{example}{Example}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage{blkarray, bigstrut}
+\usepackage{gauss}
+\usepackage{relsize}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+
+\newtheorem{innercustomgeneric}{\customgenericname}
+\providecommand{\customgenericname}{}
+\newcommand{\newcustomtheorem}[2]{%
+  \newenvironment{#1}[1]
+  {%
+   \renewcommand\customgenericname{#2}%
+   \renewcommand\theinnercustomgeneric{##1}%
+   \innercustomgeneric
+  }
+  {\endinnercustomgeneric}
+}
+
+\newtheorem{innercustomlemma}{Lemma}
+\newenvironment{customlemma}[1]
+  {\renewcommand\theinnercustomlemma{#1}\innercustomlemma}
+  {\endinnercustomlemma}
+  
+\newtheorem{innercustomcorol}{Corollary}
+\newenvironment{customcorol}[1]
+  {\renewcommand\theinnercustomcorol{#1}\innercustomcorol}
+  {\endinnercustomcorol}  
+  
+  \newtheorem{innercustomtheorem}{Theorem}
+\newenvironment{customtheorem}[1]
+  {\renewcommand\theinnercustomtheorem{#1}\innercustomtheorem}
+  {\endinnercustomtheorem}  
+  
+   \newtheorem{innercustomdef}{Definition}
+\newenvironment{customdef}[1]
+  {\renewcommand\theinnercustomdef{#1}\innercustomdef}
+  {\endinnercustomdef}  
+  
+     \newtheorem{innercustomex}{Example}
+\newenvironment{customex}[1]
+  {\renewcommand\theinnercustomex{#1}\innercustomex}
+  {\endinnercustomex}  
+
+
+\newcustomtheorem{customprop}{Proposition}
+
+\newenvironment{mygmatrix}{\def\mathstrut{\vphantom{\big(}}\gmatrix}{\endgmatrix}
+
+
+\title{
+{Machine Learning Exercise 04}
+\\{\large RWTH-Aachen}
+}
+\author{Tae Keun Jeong}
+\date{Day Month Year}
+
+\begin{document}
+\maketitle
+
+\input{exercise04/ML-exercise4ab.tex}
+
+
+\end{document}
+
